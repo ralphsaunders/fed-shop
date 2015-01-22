@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Test</title>
-</head>
-<body>
-    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
-    <label>Add suffix
-    <input type="text">
-    </label>
-    <script src="/app.js"></script>
-</body>
-</html> 
+html(lang="en")
+    head
+    meta(charset="UTF-8")
+    title Test
+
+body
+    script(src="/bower_components/jquery/dist/jquery.min.js")
+
+    form("/api/suffixes", method="post")
+        p
+            label(for="suffix") Add Suffix
+            input(type="text", name="suffix" id="suffix")
+        input(type="submit")
+
+    script(src="/app.js")
