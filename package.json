@@ -1,0 +1,28 @@
+{
+  "name": "fed-shop",
+  "version": "0.0.0",
+  "description": "Redweb FED Workshop 1",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "~1.10.2",
+    "jade": "~1.9.1",
+    "multer": "~0.1.7",
+    "underscore": "~1.7.0",
+    "express": "~4.11.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ralphsaunders/fed-shop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ralphsaunders/fed-shop/issues"
+  },
+  "homepage": "https://github.com/ralphsaunders/fed-shop"
+}
