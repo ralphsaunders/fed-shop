@@ -1,61 +1,75 @@
-var express = require('express');
-var _ = require('underscore');
-var bodyParser = require('body-parser');
-var app = express();
-var multer = require('multer');
-var jade = require('jade');
+var express = require('express'),
+    _ = require('underscore'),
+    bodyParser = require('body-parser'),
+    multer = require('multer'),
+    jade = require('jade'),
+    app = express();
 
-app.use(bodyParser.json);
-app.use(bodyParser.urlencoded({extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.set('view engine', 'jade');
 
-//View stuff
+var prefixes = ['Odd', 'Loud', 'Super'],
+    suffixes = ['Sausage', 'Bacon', 'Lamb Chop'];
 
-app.get('/', function(req, res){
-	res.status(200).render('index');
+app.get('/api', function(req, res) {
+    text = _.sample(prefixes) + ' ' + _.sample(suffixes);
+
+    res.status(200).send(text);
 });
 
-//API stuff
-
-var prefixes = ['wallnut','peanut','pestachio'],
-    suffixes = ['round','square','rectangle'];
-
-app.get('/api', function(req, res){
-	var text = _.sample(prefixes) + ' ' + _.sample(suffixes);
-	//res.json('hola');
-	res.status(200).send(text);
+app.get('/api/prefixes', function(req, res) {
+    res.status(200).send(prefixes);
 });
 
-app.get('/api/prefixes', function(req, res){
-	res.status(200).send(prefixes);
+app.get('/api/suffixes', function(req, res) {
+    res.status(200).send(suffixes);
 });
 
-app.get('/api/suffixes', function(req, res){
-	res.status(200).send(suffixes);
+app.get('/api/prefixes/:id', function(req, res) {
+    var index = parseInt(req.params.id, 10);
+
+    if(index <= prefixes.length - 1) {
+        res.status(200).json(prefixes[index]);
+    } else {
+        res.status(404).send('404 not found')
+    }
 });
 
-app.get('/api/prefixes/:id', function(req, res){
-	var index = parseInt(req.params.id, 10);
-	if(index >= prefixes.length){
-		res.status(404).send('404');
-	} else{
-		res.status(200).send(prefixes[index]);
-	}
+app.get('/api/suffixes/:id', function(req, res) {
+    var index = parseInt(req.params.id, 10);
+
+    if(index <= suffixes.length - 1) {
+        res.status(200).json(suffixes[index]);
+    } else {
+        res.status(404).send('404 not found')
+    }
 });
 
-app.post('/api/suffixes', function(req, res){
-	var suffix = req.body.suffix;
+app.post('/api/prefixes', function(req, res) {
+    var prefix = req.body.prefix;
 
-	if(suffix && suffixes.indexOf(suffix) === -1){
-		suffixes.push(suffix);
-	}
+    if(prefix && prefixes.indexOf(prefix) === -1) {
+        prefixes.push(prefix);
+    }
 
-	res.status(200).send(suffixes);
+    res.status(200).send(prefixes);
 });
 
-var server = app.listen(3000, function(){
-	var host = server.address().address,
-	    port = server.address().port;
-	console.log('App listening at http://%s:%s', host, port);
+app.post('/api/suffixes', function(req, res) {
+    var suffix = req.body.suffix;
+
+    if(suffix && suffixes.indexOf(suffix) === -1) {
+        suffixes.push(suffix);
+    }
+
+    res.status(200).send(suffixes);
+});
+
+var server = app.listen(3000, function() {
+    var host = server.address().address,
+        port = server.address().port;
+
+    console.log('App listening at http://%s:%s', host, port)
 });
