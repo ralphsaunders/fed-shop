@@ -17,8 +17,8 @@ app.get('/', function(req, res) {
 });
 
 // Api code
-var prefixes = ['Total', 'Awesome', 'Weird'],
-    suffixes = ['Fish', 'Cheese', 'Monster'];
+var prefixes = ['Total', 'Awesome', 'Weird', 'Interesting', 'Sleepy'],
+    suffixes = ['Fish', 'Cheese', 'Monster', 'Man', 'Crab'];
 
 // Get functions
 app.get('/api', function (req, res) {
@@ -40,7 +40,7 @@ app.get('/api/prefixes/:index', function (req, res) {
 // Post functions
 app.post('/api/suffixes', function (req, res) {
     var suffix = req.body.suffix;
-    if (suffix && suffixes.indexOf(suffix) === -1) suffixes.push(suffixes);
+    if (suffix && suffixes.indexOf(suffix) === -1) suffixes.push(suffix);
     res.status(200).send(suffixes);
 });
 

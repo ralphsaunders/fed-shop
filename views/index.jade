@@ -3,10 +3,19 @@ html(lang="en")
     head
         meta(charset="utf-8")
         title Test
-        link(rel='stylesheet', href='/stylesheets/main.css')
+        link(rel='stylesheet', href='/stylesheets/demo.css')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+
     body
-        lable Add suffix
-            input(type="text")
+        .tim
+            label Add suffix
+                input(class="new-suffix" type="text")
+            button.add-suffix submit
+
+        .button-container
+            button.default
+            button.primary
+            button.warning
 
         script(src="/bower_components/jquery/dist/jquery.min.js")
         script(src="/app.js")
