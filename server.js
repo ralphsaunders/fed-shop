@@ -2,10 +2,13 @@ var express = require('express'),
     _ = require('underscore'),
     bodyParser = require('body-parser'),
     multer = require('multer'),
+    jade = require('jade'),
     app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
+app.set('view engine', 'jade');
 
 var prefixes = ['Odd', 'Loud', 'Super'],
     suffixes = ['Sausage', 'Bacon', 'Lamb Chop'];
@@ -70,5 +73,3 @@ var server = app.listen(3000, function() {
 
     console.log('App listening at http://%s:%s', host, port)
 });
-
-
