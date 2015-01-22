@@ -13,6 +13,10 @@ app.set('view engine', 'jade');
 var prefixes = ['Odd', 'Loud', 'Super'],
     suffixes = ['Sausage', 'Bacon', 'Lamb Chop'];
 
+app.get('/', function(req, res) {
+    res.status(200).render('index');
+});
+
 app.get('/api', function(req, res) {
     text = _.sample(prefixes) + ' ' + _.sample(suffixes);
 
