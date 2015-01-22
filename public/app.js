@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 $('.add-suffix-button').on('click', function () {
     // get reference to text in input
     var input = $('#suffix-text');
@@ -19,6 +18,3 @@ $('.add-suffix-button').on('click', function () {
 $.get('/api', function (response) {
     $('.random-button').text(response);
 });
-=======
-console.log('fml');
->>>>>>> c0b63e1800bb17f3f10d86ca158cb4af79da5ba9
