@@ -7,20 +7,22 @@ var jade = require('jade');
 var app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.set('view engine', 'jade');
 
-// View
-app.get('/', function(req, res) {
+//View stuff
+
+app.get('/', function (req, res) {
     res.status(200).render('index');
 });
 
-// Api code
-var prefixes = ['Total', 'Awesome', 'Weird', 'Interesting', 'Sleepy'],
-    suffixes = ['Fish', 'Cheese', 'Monster', 'Man', 'Crab'];
+//API stuff
 
-// Get functions
+var prefixes = ['Total', 'Awesome', 'Sizzling'],
+    suffixes = ['Floor', 'Banana', 'Sausage'];
+
 app.get('/api', function (req, res) {
     var text = _.sample(prefixes) + ' ' + _.sample(suffixes);
     res.status(200).send(text);
@@ -51,4 +53,3 @@ var server = app.listen(3000, function () {
 
     console.log('http://%s:%s', host, port);
 });
-
